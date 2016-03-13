@@ -9,6 +9,8 @@ from pdfminer.pdfdevice import PDFDevice
 import sys
 from cStringIO import StringIO
 from nltk import *
+from nltk.stem.porter import *
+
 
 
 reload(sys)  
@@ -19,7 +21,7 @@ class pdfread(object):
 
 	def __init__(self,path):
 		self.path=path
-	def pdf2text(self,rawclean):
+	def pdf2text(self):
 		rsrcmgr = PDFResourceManager()
 		retstr = StringIO()
 		codec = 'utf-8'
@@ -40,8 +42,7 @@ class pdfread(object):
 		fp.close()
 		device.close()
 		retstr.close()
-		if rawclean is 'y':
-			self.cleantext()
+		self.cleantext()
 
 
 
